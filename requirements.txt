@@ -1,0 +1,6 @@
+aiohttp
+asyncio
+discord.py
+tqdm
+pysqlite3
+requests
