@@ -347,6 +347,10 @@ async def on_message(message: discord.Message) -> None:
                 await message.reply(embed=usageEmbed, delete_after=10)
                 await asyncio.sleep(10)
                 await message.delete()
+            elif message.content == "?reps":
+                await message.reply(embed=usageEmbed, delete_after=10)
+                await asyncio.sleep(10)
+                await message.delete()
             elif message.content == "+rep":
                 await message.reply(embed=usageEmbed, delete_after=10)
                 await asyncio.sleep(10)
