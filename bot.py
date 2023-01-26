@@ -105,11 +105,6 @@ async def on_ready() -> None:
 
 @tasks.loop(minutes=1.0)
 async def status_task() -> None:
-    """
-    Setup the game status task of the bot
-    """
-    #statuses = ["Meow!", "PUWWW", "AAAA"]
-    #await bot.change_presence(activity=discord.Game(random.choice(statuses)))
     await asyncio.sleep(1)
 
 @bot.event
@@ -117,8 +112,6 @@ async def on_message(message: discord.Message) -> None:
     
     if message.author == bot.user or message.author.bot:
         return
-    
-    #rep_channel_id = 1067855324649898035
     
     def unixStampMaker(hours: int):
         unix_now = int(time.time())
@@ -202,7 +195,6 @@ async def on_message(message: discord.Message) -> None:
                     cursor = connection.cursor()
                     cursor.execute("UPDATE cooldown SET cooldown=? WHERE author_userid=? AND target_userid=?", (1, message.author.id, mentioned_user.id,))
                     connection.commit()
-                    #connection.close()
                 
                 if result == None:
                     #TODO: make it add user to database here, UPDATE: DONE
@@ -216,7 +208,6 @@ async def on_message(message: discord.Message) -> None:
                         VALUES
                         (?,?,?)""", (message.author.id, mentioned_user.id, unixStampMaker(1)))
                     connection.commit()
-                    #connection.close()
                     await message.reply(f"Gave **+1** rep to {mentioned_user.mention}")
                 else:
                     reps = result[1]
@@ -227,7 +218,6 @@ async def on_message(message: discord.Message) -> None:
                         VALUES
                         (?,?,?)""", (message.author.id, mentioned_user.id, unixStampMaker(1)))
                     connection.commit()
-                    #connection.close()
                     await message.reply(f"Gave **+1** rep to {mentioned_user.mention}")
                 
                 try:
@@ -256,7 +246,6 @@ async def on_message(message: discord.Message) -> None:
                     cursor = connection.cursor()
                     cursor.execute("UPDATE cooldown SET cooldown=? WHERE author_userid=? AND target_userid=?", (1, message.author.id, mentioned_user.id,))
                     connection.commit()
-                    #connection.close()
                     
                 if result == None:
                     #TODO: make it add user to database here, UPDATE: DONE
@@ -270,7 +259,6 @@ async def on_message(message: discord.Message) -> None:
                         VALUES
                         (?,?,?)""", (message.author.id, mentioned_user.id, unixStampMaker(1)))
                     connection.commit()
-                    #connection.close()
                     await message.reply(f"Removed **1** rep from {mentioned_user.mention}")
                 else:
                     reps = result[1]
@@ -314,7 +302,6 @@ async def on_message(message: discord.Message) -> None:
                     await message.reply(embed=userInfo)
                     return
                 else:
-                    #await message.reply(f"{mentioned_user.mention} has **{search}** reps")
                     DISCORD_EPOCH = 1420070400000
                     def convertSnowflakeToDate(snowflake: int):
                         abc = (snowflake >> 22)
